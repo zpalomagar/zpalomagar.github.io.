@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+   crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+   integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+   crossorigin=""></script>
+   <style type="text/css">
+
+        .leaflet-container {
+          background-color: red;
+    /*background-image: linear-gradient(to bottom, rgba(255,0,0,0), rgba(255, 252, 153));*/
+}
+
+  .custom-popup, .leaflet-popup-content-wrapper {
+    background:transparent;
+    color:#fff;
+    font-size:12px;
+    line-height:10px;
+    border-radius: none;
+    width:800px;
+    box-shadow: none;
+    }
+
+.custom-popup, .leaflet-popup-content-wrapper a {
+    color:rgba(255,255,255,0.1);
+    width:800px;
+    }
+
+.custom-popup, .leaflet-popup-tip-container {
+    width:800px;
+    height:800px;
+    }
+
+.custom-popup, .leaflet-popup-tip {
+    width:800px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    }
+
+iframe{
+	width:800px;
+	display: block;
+    margin: auto;
+    border: none;
+    height: 400px;
+}
+
+#mapid{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #FFF449;
+    background-color: #FFFFE4;
+    FFFFE4
+/*    background-image: linear-gradient(to bottom, rgba(255,0,0,0), rgba(240, 200, 211));*/
+/*    background-image: radial-gradient(red, green, blue);*/
+}
+
+   </style>
+	<title></title>
+</head>
+<body>
+	 <div  class="custom-popup" id="mapid"></div>
+	 <script type="text/javascript">
+
+// var mymap = L.map('mapid').setView([51.91695582709645, 4.45770263671875], 13);
+
+	var mymap = L.map('mapid', {
+    crs: L.CRS.Simple,
+    minZoom: -3,
+    maxZoom: 5
+    // minZoom: -5
+});
+
+var bounds = [[0,0], [1000,1408]];
+var image = L.imageOverlay('sociocracy.png', bounds).addTo(mymap);
+mymap.fitBounds(bounds);
+
+//logo position: bottomright, topright, topleft, bottomleft
+    var logo = L.control({position: 'topright'});
+    logo.onAdd = function(mymap){
+        var div = L.DomUtil.create('div', 'myclass');
+        div.innerHTML= "<img src='LOGO.png' style='width:30px'/>";
+        return div;
+    }
+    logo.addTo(mymap);
+
+
+	 </script>
+
+</body>
+</html>
